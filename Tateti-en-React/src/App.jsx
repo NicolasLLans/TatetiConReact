@@ -6,6 +6,7 @@ import { Square } from './components/Square.jsx'
 import { TURNS} from './constants.js'
 import { checkWinnerFrom, checkEndGame } from './logic/board'
 import { WinnerModal } from './components/WinnerModal'
+import logo from './assets/lombardito.png'
 
 function App() {
 
@@ -55,7 +56,9 @@ function App() {
 
   return (
     <main className='board'>
-      <h1>Ta Te Ti</h1>
+      <div className='cabecera'>
+      <h1>Ta Te Ti</h1><img className='logo' src={logo} alt="nicoDev" />
+      </div>
       <button onClick={resetGame}>Empezar de nuevo</button>
       <section className='game'>
         {
