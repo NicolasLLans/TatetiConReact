@@ -33,6 +33,7 @@ const WINNER_COMBOS = [
 ]
 
 function App() {
+
   const [board, setBoard] = useState(Array(9).fill(null))
   const [turn, setTurn] = useState(TURNS.X)
   const [winner, setWinner] = useState(null)
@@ -58,6 +59,10 @@ function App() {
     setWinner(null)
   }
 
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square !== null)
+  }
+
   const updateBoard = (index) => {
     //no actualizamos esta posición
     //si ya tiene algo
@@ -73,12 +78,15 @@ function App() {
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       setWinner(newWinner)
+    }else if(checkEndGame(newBoard)){
+      setWinner(false)
     }
   }
 
   return (
     <main className='board'>
       <h1>Ta Te Ti</h1>
+      <button onClick={resetGame}>Empezar de nuevo</button>
       <section className='game'>
         {
           board.map((square, index) => {
@@ -88,7 +96,7 @@ function App() {
                 index={index}
                 updateBoard={updateBoard}
               >
-                {board[index]}
+                {square}
               </Square>
             )
           })
