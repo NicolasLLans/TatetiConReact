@@ -11,7 +11,7 @@ function App() {
 
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
-    if (boardFromLocalStorage) return JSON.parse(boardFromStorage)
+    if (boardFromStorage) return JSON.parse(boardFromStorage)
     return Array(9).fill(null)
   })
   const [turn, setTurn] = useState(() => {
@@ -42,7 +42,7 @@ function App() {
     setTurn(newTurn)
     // guardar aquí partida
     window.localStorage.setItem('board', JSON.stringify(newBoard))
-    window.localStorage.setItem('turn', turn)
+    window.localStorage.setItem('turn', newTurn)
     // revisar si hay ganador
     const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
